@@ -6,6 +6,7 @@ export default {
       colors: {
         'bg-color': '#101010',
         pinkish: '#ED6161',
+        'custom-black': '#161616',
       },
       transitionDuration: {
         1500: '1500ms',
@@ -25,7 +26,10 @@ export default {
       height: {
         custom: '690px',
       },
+      textShadow: {
+        neon: '0 0 5px rgba(254, 254, 254, 0.49), 0 0 1px #fff, 0 0 1px #fff',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-textshadow')],
 };

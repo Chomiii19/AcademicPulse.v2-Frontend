@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 export default function Header() {
   return (
-    <header className="lg:border-b-zinc-800 bg-bg-color bg-opacity-80 backdrop-blur-md lg:border-b fixed w-full h-auto flex justify-center">
+    <header className="lg:border-b-zinc-800 bg-bg-color bg-opacity-70 backdrop-blur-md lg:border-b fixed w-full h-auto flex justify-center z-10">
       <div className=" h-16 flex justify-between items-center px-5 w-full lg:px-10  py-2 lg:w-custom">
         <div className="flex gap-8 w-auto h-full items-center cursor-pointer">
           <Logo />
@@ -49,7 +49,7 @@ function Logo() {
 
 function SearchBar() {
   return (
-    <div className="hidden lg:flex h-auto w-auto bg-zinc-900 rounded-lg items-center px-2 py-1.5 justify-between cursor-pointer ease border border-transparent hover:border hover:border-pinkish duration-300 transition-colors group">
+    <div className="hidden lg:flex h-auto w-38 bg-zinc-900 rounded-lg items-center px-2 py-1.5 justify-between cursor-pointer ease border border-transparent hover:border hover:border-pinkish duration-300 transition-colors group">
       <div className="flex gap-2 items-center">
         <Search className="text-zinc-500 group-hover:text-zinc-300 transition-colors duration-300 h-4 w-4" />
         <span className="text-zinc-500 font-semibold text-sm group-hover:text-zinc-300 transition-colors duration-500">
