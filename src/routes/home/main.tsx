@@ -1,4 +1,5 @@
 import { BookA } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 import ReactTypingEffect from 'react-typing-effect';
 import { users, Iuser } from './communityUsers';
 
@@ -95,18 +96,55 @@ function Section({
 }
 
 function Features({ id }: { id: number }) {
+  const { ref: ref1, inView: isVisible1 } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const { ref: ref2, inView: isVisible2 } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const { ref: ref3, inView: isVisible3 } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const { ref: ref4, inView: isVisible4 } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
   const layout1 = id === 1 ? 'col-span-1' : 'col-span-2';
   const layout2 = id === 1 ? 'col-span-2' : 'col-span-1';
 
-  const grid1ELementsStyle = `border bg-custom-black border-zinc-800 ${layout1} row-span-1 w-full h-full rounded-2xl`;
-  const grid2ELementsStyle = `border bg-custom-black border-zinc-800 ${layout2} row-span-1 w-full h-full rounded-2xl`;
+  const grid1ELementsStyle = `border bg-custom-black border-zinc-800 ${layout1} row-span-1 w-full h-full rounded-2xl transition-transform duration-300 ease-in`;
+  const grid2ELementsStyle = `border bg-custom-black border-zinc-800 ${layout2} row-span-1 w-full h-full rounded-2xl transition-transform duration-300 ease-in`;
 
   return (
     <div className="grid grid-cols-1 grid-rows-4 lg:grid-cols-3 lg:grid-rows-2 gap-7 w-[1200px] h-[750px] items-center justify-center">
-      <div className={grid1ELementsStyle}></div>
-      <div className={grid2ELementsStyle}></div>
-      <div className={grid2ELementsStyle}></div>
-      <div className={grid1ELementsStyle}></div>
+      <div
+        ref={ref1}
+        className={`${grid1ELementsStyle} ${
+          isVisible1 ? 'translate-x-0' : '-translate-x-7'
+        }`}
+      ></div>
+      <div
+        ref={ref2}
+        className={`${grid2ELementsStyle} ${
+          isVisible2 ? 'translate-x-0' : 'translate-x-7'
+        }`}
+      ></div>
+      <div
+        ref={ref3}
+        className={`${grid2ELementsStyle} ${
+          isVisible3 ? 'translate-x-0' : '-translate-x-7'
+        }`}
+      ></div>
+      <div
+        ref={ref4}
+        className={`${grid1ELementsStyle} ${
+          isVisible4 ? 'translate-x-0' : 'translate-x-7'
+        }`}
+      ></div>
     </div>
   );
 }
@@ -145,10 +183,18 @@ function CommunityList() {
 }
 
 function CommunityListUser({ name, username, comment, image, rowSpan }: Iuser) {
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
   return (
     <div
+      ref={ref}
       className={`h-auto flex flex-col bg-custom-black border 
-    border-zinc-800 rounded-xl p-4 gap-3 ${rowSpan}`}
+    border-zinc-800 rounded-xl p-4 gap-3 transition-all duration-500 ease-in ${rowSpan} ${
+        inView ? 'translate-y-0 opacity-1' : '-translate-y-14 opacity-0'
+      }`}
     >
       <div className="flex gap-4 items-center">
         <img
