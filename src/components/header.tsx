@@ -40,12 +40,12 @@ export default function Header() {
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2 cursor-pointer">
+    <a href="/" className="flex items-center gap-2 cursor-pointer">
       <img className="h-7 w-9" src="/assets/logo.png" alt="" />
       <span className="text-slate-100 font-semibold text-lg font-sans">
         AcadPulse
       </span>
-    </div>
+    </a>
   );
 }
 
