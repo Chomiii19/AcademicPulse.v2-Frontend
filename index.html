@@ -13,12 +13,22 @@
     />
     <title>AcadPulse</title>
     <style>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d43f3f;
+      }
+
       html {
         scroll-behavior: smooth;
+        scrollbar-color: #ed6161 #161616;
+        scrollbar-width: auto;
       }
     </style>
   </head>
-  <body style="width: 100%; overflow-x: hidden">
+  <body style="width: 100%; overflow-x: hidden; background-color: #101010">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

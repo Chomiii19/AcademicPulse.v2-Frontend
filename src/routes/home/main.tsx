@@ -2,30 +2,46 @@ import { BookA } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import ReactTypingEffect from 'react-typing-effect';
 import { users, Iuser } from './communityUsers';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 
 export default function HomePage() {
   return (
-    <div className="bg-bg-color w-full h-auto flex items-center flex-col ">
-      <Main />
-      <Section
-        id={1}
-        title="Effortless School Monitoring Features"
-        desc="AcadPulse makes school monitoring simple"
-      />
-      <Section
-        id={2}
-        title="Your Gateway to Smarter School Management"
-        desc=""
-      />
-      <Community />
-    </div>
+    <>
+      <Header />
+      <div className="bg-bg-color w-full h-auto flex items-center flex-col ">
+        <Main />
+        <Section
+          id={1}
+          title="Effortless School Monitoring Features"
+          desc="AcadPulse makes school monitoring simple"
+          radiusTop="border-t border-t-zinc-900 lg:rounded-t-[100px] shadow-pinkish"
+        />
+        <Section
+          id={2}
+          title="Your Gateway to Smarter School Management"
+          desc=""
+          radiusTop=""
+        />
+        <Community />
+        <a
+          href="#"
+          className="font-manrope text-xl text-zinc-200 border-[2px] border-zinc-600 py-1 px-4 rounded-full transition-all ease-in-out duration-300 hover:border-zinc-200 hover:-translate-y-1"
+        >
+          Be one of our sponsors
+        </a>
+
+        <section className="w-full h-14"></section>
+      </div>
+      <Footer />
+    </>
   );
 }
 
 function Main() {
   return (
-    <main className="flex justify-center items-center h-screen lg:w-custom lg:h-custom">
-      <div className="flex justify-center items-center flex-col w-full">
+    <main className="flex justify-center items-center h-screen lg:w-custom lg:h-custom relative overflow-hidden lg:overflow-visible">
+      <div className="flex justify-center items-center flex-col w-full z-40">
         <div className="flex gap-2 items-center rounded-full border-pinkish border px-3 py-0.5 bg-gradient-radial">
           <img src="/assets/logo.png" className="w-6 h-5" />
           <h1 className="text-lg font-sans text-zinc-300 ">
@@ -43,7 +59,7 @@ function Main() {
             />
           </h1>
         </div>
-        <h1 className=" text-transparent leading-1 font-semibold text-3xl lg:text-7xl w-4/6 text-center self-center font-manrope bg-clip-text bg-gradient-to-b via-zinc-400 from-zinc-50 to-zinc-800 p-3">
+        <h1 className=" text-transparent leading-1 font-semibold text-5xl lg:text-7xl w-4/6 text-center self-center font-manrope bg-clip-text bg-gradient-to-b via-zinc-400 from-zinc-50 to-zinc-800 p-3">
           Your Personal School Monitoring App
         </h1>
         <p className="text-zinc-400 mt-5 w-3/6 text-sm text font-manrope text-center tracking-wider">
@@ -53,8 +69,8 @@ function Main() {
         </p>
         <div className="mt-10 flex gap-10">
           <a
-            href="#"
-            className="text-zinc-100 font-manrope px-4 py-1.5 font-semibold rounded-xl bg-gradient-to-br from-pinkish via-red-400 to-red-300 hover:-translate-y-1 ease-in-out duration-300 transition-transform"
+            href="/app"
+            className="text-zinc-100 font-manrope px-4 py-1.5 font-semibold rounded-xl bg-gradient-to-br from-red-500 via-red-400 to-pinkish hover:-translate-y-1 ease-in-out duration-300 transition-transform"
           >
             Get Started
           </a>
@@ -67,6 +83,7 @@ function Main() {
           </a>
         </div>
       </div>
+      <div className="z-1 w-[1500px] h-[1500px] bg-custom-radial absolute rounded-full top-32"></div>
     </main>
   );
 }
@@ -75,18 +92,30 @@ function Section({
   title,
   desc,
   id,
+  radiusTop,
 }: {
   title: string;
   desc: string;
   id: number;
+  radiusTop: string;
 }) {
+  const [ref, inView] = useInView({
+    threshold: 0.05,
+    triggerOnce: true,
+  });
+
   return (
-    <section className="lg:w-custom h-auto flex justify-start items-center flex-col gap-11 px-40 pb-52">
+    <section
+      ref={ref}
+      className={`w-full h-auto rounded-[50px] flex justify-start items-center flex-col gap-11 px-8 lg:px-40 pb-44 pt-10 ${radiusTop} bg-bg-color z-50 ${
+        inView ? 'mt-0' : 'mt-44'
+      } transition-all ease-in duration-500`}
+    >
       <div className="flex flex-col items-center gap-3">
-        <h1 className="font-manrope font-semibold text-4xl text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_center,_#de4d4d_100%,_#ED6161,_#fff)] text-shadow-neon">
+        <h1 className="font-manrope text-center font-semibold text-3xl lg:text-4xl text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_center,_#de4d4d_100%,_#ED6161,_#fff)] text-shadow-neon">
           {title}
         </h1>
-        <p className="font-manrope text-lg text-zinc-400 font-medium tracking-wider">
+        <p className="text-center font-manrope text-lg text-zinc-400 font-medium tracking-wider">
           {desc}
         </p>
       </div>
@@ -113,14 +142,14 @@ function Features({ id }: { id: number }) {
     triggerOnce: true,
   });
 
-  const layout1 = id === 1 ? 'col-span-1' : 'col-span-2';
-  const layout2 = id === 1 ? 'col-span-2' : 'col-span-1';
+  const layout1 = id === 1 ? 'lg:col-span-1' : 'lg:col-span-2';
+  const layout2 = id === 1 ? 'lg:col-span-2' : 'lg:col-span-1';
 
   const grid1ELementsStyle = `border bg-custom-black border-zinc-800 ${layout1} row-span-1 w-full h-full rounded-2xl transition-transform duration-300 ease-in`;
   const grid2ELementsStyle = `border bg-custom-black border-zinc-800 ${layout2} row-span-1 w-full h-full rounded-2xl transition-transform duration-300 ease-in`;
 
   return (
-    <div className="grid grid-cols-1 grid-rows-4 lg:grid-cols-3 lg:grid-rows-2 gap-7 w-[1200px] h-[750px] items-center justify-center">
+    <div className="grid grid-cols-1 grid-rows-4 lg:grid-cols-3 lg:grid-rows-2 gap-7 w-full lg:w-[1200px] h-[750px] items-center justify-center">
       <div
         ref={ref1}
         className={`${grid1ELementsStyle} ${
@@ -151,12 +180,12 @@ function Features({ id }: { id: number }) {
 
 function Community() {
   return (
-    <section className="h-auto w-custom flex items-center flex-col gap-11 pb-52">
+    <section className="h-auto lg:w-custom w-full flex items-center flex-col gap-11 pb-24 px-3 overflow-hidden">
       <div className="flex flex-col items-center gap-5">
-        <h1 className="font-manrope font-semibold text-4xl text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_center,_#de4d4d_100%,_#ED6161,_#fff)] text-shadow-neon">
+        <h1 className="font-manrope font-semibold text-3xl lg:text-4xl text-transparent bg-clip-text bg-[radial-gradient(ellipse_at_center,_#de4d4d_100%,_#ED6161,_#fff)] text-shadow-neon">
           Hear from Our Community
         </h1>
-        <p className="font-manrope text-lg text-zinc-400 font-medium tracking-wider w-[550px] text-center">
+        <p className="font-manrope text-lg text-zinc-400 font-medium tracking-wider w-80 lg:w-[550px] text-center">
           See what educators, students, and administrators are saying about
           their experience with our platform.
         </p>
@@ -168,7 +197,7 @@ function Community() {
 
 function CommunityList() {
   return (
-    <div className="grid grid-cols-2 grid-rows-5 lg:grid-cols-3 lg:grid-rows-5 grid-flow-dense auto-rows-auto w-[1000px] gap-6">
+    <div className="grid grid-cols-2 grid-rows-z lg:grid-cols-3 lg:grid-rows-4 grid-flow-dense auto-rows-auto w-full lg:w-[1000px] lg:gap-6 gap-3">
       {users.map((user, i) => (
         <CommunityListUser
           name={user.name}
@@ -198,17 +227,19 @@ function CommunityListUser({ name, username, comment, image, rowSpan }: Iuser) {
     >
       <div className="flex gap-4 items-center">
         <img
-          className="w-12 rounded-full"
+          className="w-8 lg:w-12 rounded-full"
           src={`/assets/communityUsers/${image}`}
         />
         <div>
-          <h1 className="font-manrope text-sm text-zinc-200 font-semibold">
+          <h1 className="font-manrope text-xs lg:text-sm text-zinc-200 font-semibold">
             {name}
           </h1>
-          <p className="font-manrope text-sm text-zinc-200 ">{username}</p>
+          <p className="font-manrope text-xs lg:text-sm text-zinc-400 ">
+            {username}
+          </p>
         </div>
       </div>
-      <p className="font-manrope text-sm text-zinc-400">{comment}</p>
+      <p className="font-manrope text-xs lg:text-sm text-zinc-400">{comment}</p>
     </div>
   );
 }

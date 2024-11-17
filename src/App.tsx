@@ -1,15 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/header/header';
 import HomePage from './routes/home/main';
+// import Modal from './components/modal';
+import AppPage from './routes/app';
+import IDValidaionPage from './routes/idValidation';
 
 export default function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/app"></Route>
-        <Route path="/app/id-validation"></Route>
+        <Route path="/app" element={<AppPage />}></Route>
+        <Route path="/app/id-validation" element={<IDValidaionPage />}></Route>
+        <Route path="/app/scan-id"></Route>
+        <Route path="/app/dashboard"></Route>
+        <Route path="/app/upload"></Route>
+        <Route path="/app/account"></Route>
+        <Route path="/app/community"></Route>
+        <Route path="/app/settings"></Route>
       </Routes>
     </Router>
   );

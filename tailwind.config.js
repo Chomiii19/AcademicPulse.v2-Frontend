@@ -19,6 +19,8 @@ export default {
       backgroundImage: {
         'gradient-radial':
           'radial-gradient(1686.42% 113.39% at 83.25% 2.56%,rgba(237, 97, 97, 0.1),#bd34fe00)',
+        'custom-radial':
+          'radial-gradient(circle, rgba(237, 97, 97, 0.18), rgba(237, 97, 97, 0.1), transparent 60% , transparent 100%)',
       },
       width: {
         custom: '1360px',
@@ -28,6 +30,10 @@ export default {
       },
       textShadow: {
         neon: '0 0 5px rgba(254, 254, 254, 0.49), 0 0 1px #fff, 0 0 1px #fff',
+      },
+      zIndex: {
+        1: '1',
+        1000: '1000',
       },
     },
   },
