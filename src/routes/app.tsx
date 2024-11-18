@@ -3,8 +3,9 @@ import ReactTypingEffect from 'react-typing-effect';
 import { IdCard, ScanQrCode, FileUp } from 'lucide-react';
 import Header from '../components/header';
 import SidebarSection from '../components/sidebar';
+import LineChart from '../services/logLineGraph';
 
-export default function AppPage() {
+function AppPage() {
   return (
     <>
       <Header />
@@ -47,7 +48,7 @@ function UserGreetings() {
           </p>
         </div>
         <img
-          src="/public/assets/communityUsers/user-2.jpeg"
+          src="/assets/communityUsers/user-2.jpeg"
           className="h-auto rounded-3xl"
         />
       </div>
@@ -80,7 +81,7 @@ function StudentsInSchool() {
         <ReactTypingEffect
           text={['']}
           speed={100}
-          className="font-light text-5xl"
+          className="font-extralight text-5xl"
         />
       </h1>
       <p className="text-zinc-300">No. of currently in campus</p>
@@ -156,13 +157,16 @@ function UpdateLog() {
 }
 function WeeklyReport() {
   return (
-    <div className="border border-zinc-800 rounded-lg bg-custom-black col-span-3 row-span-2 p-3">
+    <div className="border border-zinc-800 rounded-lg bg-custom-black col-span-3 row-span-2 p-3 flex flex-col gap-2">
       <header className="w-full flex justify-between items-center">
         <h1 className="text-lg font-extrabold">This Week's Report</h1>
         <a className="text-pinkish text-xs border border-pinkish px-1 rounded-full cursor-pointer hover:text-red-300 hover:border-red-300 transition-colors duration-300">
           See in details
         </a>
       </header>
+      <div className="w-[770px] h-[280px]">
+        <LineChart />
+      </div>
     </div>
   );
 }
@@ -265,7 +269,7 @@ function IDValidationHome() {
 function ScanQRHome() {
   return (
     <a
-      href="/app/id-validation"
+      href="/app/scan-id"
       className="border border-zinc-800 rounded-lg bg-custom-black col-span-1 p-3 flex flex-col items-center h-full group cursor-pointer"
     >
       <ScanQrCode className="w-auto h-full group-hover:text-pinkish transition-colors duration-300 ease-in-out" />
@@ -282,16 +286,18 @@ function ScanQRHome() {
 function UploadHome() {
   return (
     <a
-      href="/app/id-validation"
+      href="/app/upload-record"
       className="border border-zinc-800 rounded-lg bg-custom-black col-span-1 p-3 flex flex-col items-center h-full group cursor-pointer gap-1"
     >
       <FileUp className="w-auto h-full group-hover:text-pinkish transition-colors duration-300 ease-in-out" />
       <div className="flex flex-col items-center">
         <h1 className="text-lg font-medium">Upload Record</h1>
         <p className="text-xs text-zinc-400 text-center">
-          Upload your school's list of faculty and students.
+          Upload your school's list of students.
         </p>
       </div>
     </a>
   );
 }
+
+export { AppPage, StudentsInSchool };

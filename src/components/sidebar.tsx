@@ -13,7 +13,7 @@ import {
 
 export default function SidebarSection({ active }: { active: number }) {
   return (
-    <nav className=" bg-bg-color fixed z-50 h-screen w-60 p-2 pt-20 text-zinc-400 font-manrope overflow-x-auto -translate-x-64 lg:translate-x-0">
+    <nav className=" bg-bg-color fixed z-50 h-screen w-60 p-2 pt-20 text-zinc-400 font-manrope lg:hover:overflow-x-auto transition-all duration-300 -translate-x-64 lg:translate-x-0">
       <section className="flex flex-col w-full gap-1 border-b pb-4 border-b-zinc-800">
         <a
           href="/app"
@@ -31,60 +31,63 @@ export default function SidebarSection({ active }: { active: number }) {
         >
           <IdCard /> <p>ID Validation</p>
         </a>
-        <div
+        <a
+          href="/app/scan-id"
           className={`flex gap-5 items-center transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg hover:text-pinkish hover:bg-zinc-900 ${
             active === 3 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <ScanQrCode /> <p>Scan QR Code</p>
-        </div>
-        <div
+        </a>
+        <a
+          href="/app/dashboard"
           className={`flex gap-5 items-center transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg hover:text-pinkish hover:bg-zinc-900 ${
             active === 4 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <LayoutDashboard /> <p>Dashboard</p>
-        </div>
-        <div
+        </a>
+        <a
+          href="/app/upload-record"
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 4 ? 'text-pinkish bg-zinc-900' : ''
+            active === 5 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <FileUp /> <p>Upload Record</p>
-        </div>
+        </a>
       </section>
       <section className="flex flex-col w-full gap-1 border-b pb-4 border-b-zinc-800 pt-2">
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 5 ? 'text-pinkish bg-zinc-900' : ''
+            active === 6 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <CircleUserRound /> <p>Your Account</p>
         </div>
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 6 ? 'text-pinkish bg-zinc-900' : ''
+            active === 7 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <MessageSquare /> <p>Community</p>
         </div>
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 7 ? 'text-pinkish bg-zinc-900' : ''
+            active === 8 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <Handshake /> <p>Become a Sponsor</p>
         </div>
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 8 ? 'text-pinkish bg-zinc-900' : ''
+            active === 9 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <Settings /> <p>Settings</p>
         </div>
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
-            active === 9 ? 'text-pinkish bg-zinc-900' : ''
+            active === 10 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <MessageSquareWarning /> <p>Send Feedback</p>
