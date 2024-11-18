@@ -6,6 +6,8 @@ import ScanQrCodePage from './routes/scanQRCodePage';
 import { EntryPage, ExitPage } from './routes/entryExitPage';
 import DashboardPage from './routes/dashboardPage';
 import UploadRecordPage from './routes/uploadRecordPage';
+import SignInPage from './routes/signInPage';
+import SignUpPage from './routes/signUpPage';
 
 import {
   Chart as ChartJS,
@@ -32,6 +34,8 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/app" element={<AppPage />}></Route>
         <Route path="/app/id-validation" element={<IDValidaionPage />}></Route>
         <Route path="/app/scan-id" element={<ScanQrCodePage />}></Route>

@@ -115,15 +115,21 @@ function Profile() {
 function ProfileHover({ status }: { status: string }) {
   return (
     <div
-      className="absolute top-9 right-1 flex-col gap-1 bg-zinc-900 border border-zinc-800 p-2 rounded-md"
+      className="absolute top-9 right-1 flex-col gap-1 bg-zinc-900 border border-zinc-800 p-2 rounded-md w-[70px]"
       style={{ display: status }}
     >
-      <span className="text-zinc-400 text-sm cursor-pointer w-full hover:text-pinkish">
-        Login
-      </span>
-      <span className="text-zinc-400 text-sm cursor-pointer w-full hover:text-pinkish transition-colors duration-300">
-        Signup
-      </span>
+      <a
+        href="/signin"
+        className="text-zinc-400 text-sm cursor-pointer w-full hover:text-pinkish"
+      >
+        Sign in
+      </a>
+      <a
+        href="/signup"
+        className="text-zinc-400 text-sm cursor-pointer w-full hover:text-pinkish transition-colors duration-300"
+      >
+        Sign up
+      </a>
     </div>
   );
 }
