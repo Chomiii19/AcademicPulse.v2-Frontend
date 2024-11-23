@@ -48,17 +48,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   if (loading) return <LoadingPage />;
 
-  return (
-    <AuthContext.Provider value={{ user, loading }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
 
 const useAuth = () => {
   const context = useContext(AuthContext);
   console.log(context);
-  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };
 
