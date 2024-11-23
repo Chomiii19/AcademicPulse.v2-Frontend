@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './routes/home/main';
 import { AppPage } from './routes/app';
 import IDValidaionPage from './routes/idValidationPage';
@@ -18,6 +18,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { AuthProvider } from './components/authProvider';
+import ProtectedPage from './components/protectedPage';
 
 // Register the components globally
 ChartJS.register(
@@ -31,22 +33,32 @@ ChartJS.register(
 
 export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/app" element={<AppPage />}></Route>
-        <Route path="/app/id-validation" element={<IDValidaionPage />}></Route>
-        <Route path="/app/scan-id" element={<ScanQrCodePage />}></Route>
-        <Route path="/app/scan-id/entrance" element={<EntryPage />}></Route>
-        <Route path="/app/scan-id/exit" element={<ExitPage />}></Route>
-        <Route path="/app/dashboard" element={<DashboardPage />}></Route>
-        <Route path="/app/upload-record" element={<UploadRecordPage />}></Route>
-        <Route path="/app/account"></Route>
-        <Route path="/app/community"></Route>
-        <Route path="/app/settings"></Route>
+        <Route path="/create-school" element={<SignUpPage />} />
+        <Route
+          path="/app"
+          element={
+            <AuthProvider>
+              <ProtectedPage>
+                <AppPage />
+              </ProtectedPage>
+            </AuthProvider>
+          }
+        />
+        <Route path="/app/id-validation" element={<IDValidaionPage />} />
+        <Route path="/app/scan-id" element={<ScanQrCodePage />} />
+        <Route path="/app/scan-id/entrance" element={<EntryPage />} />
+        <Route path="/app/scan-id/exit" element={<ExitPage />} />
+        <Route path="/app/dashboard" element={<DashboardPage />} />
+        <Route path="/app/upload-record" element={<UploadRecordPage />} />
+        <Route path="/app/account" />
+        <Route path="/app/community" />
+        <Route path="/app/settings" />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }

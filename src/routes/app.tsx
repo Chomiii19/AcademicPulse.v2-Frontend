@@ -149,7 +149,12 @@ function UpdateLog() {
       </header>
       <div className="w-full h-full flex flex-col gap-2 faded-bottom">
         {announcements.map((el) => (
-          <Announcement title={el.title} date={el.date} content={el.content} />
+          <Announcement
+            key={`${el.title}-${el.date}`}
+            title={el.title}
+            date={el.date}
+            content={el.content}
+          />
         ))}
       </div>
     </div>
@@ -238,6 +243,7 @@ function CommunityLog() {
       <div className="w-full h-full flex flex-col gap-2 faded-bottom overflow-hidden">
         {userLogs.map((user, i) => (
           <User
+            key={`${user.username}-${user.date}`}
             id={i + 1}
             username={user.username}
             date={user.date}

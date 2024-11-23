@@ -26,7 +26,7 @@ export default function HomePage() {
         <Community />
         <a
           href="#"
-          className="font-manrope text-xl text-zinc-200 border-[2px] border-zinc-600 py-1 px-4 rounded-full transition-all ease-in-out duration-300 hover:border-zinc-200 hover:-translate-y-1"
+          className="font-manrope text-xl text-zinc-200 border-[2px] border-zinc-600 py-1 px-4 rounded-full transition-all ease-in-out duration-300 hover:border-pinkish hover:text-pinkish hover:-translate-y-1"
         >
           Be one of our sponsors
         </a>
@@ -200,6 +200,7 @@ function CommunityList() {
     <div className="grid grid-cols-2 grid-rows-z lg:grid-cols-3 lg:grid-rows-4 grid-flow-dense auto-rows-auto w-full lg:w-[1000px] lg:gap-6 gap-3">
       {users.map((user, i) => (
         <CommunityListUser
+          key={`${user.username}-${user.name}-${i}`}
           name={user.name}
           username={user.username}
           comment={user.comment}
