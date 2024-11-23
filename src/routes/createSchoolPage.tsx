@@ -19,8 +19,8 @@ export default function SignUpPage() {
 
 function SchoolPrompt({
   activePage,
-  setActivePage,
-}: {
+}: // setActivePage,
+{
   activePage: number;
   setActivePage: React.Dispatch<React.SetStateAction<number>>;
 }) {
@@ -50,8 +50,8 @@ function SchoolPrompt({
 
 function SchoolForm({
   activePage,
-  setActivePage,
-}: {
+}: // setActivePage,
+{
   activePage: number;
   setActivePage: React.Dispatch<React.SetStateAction<number>>;
 }) {
@@ -62,66 +62,65 @@ function SchoolForm({
           activePage === 1 ? 'translate-x-0' : '-translate-x-[150%]'
         }`}
       >
+        <img src="/assets/logo.png" className="w-[40px]" />
+        <h1 className="text-lg font-bold text-shadow-neon">
+          Register your school
+        </h1>
 
-      <img src="/assets/logo.png" className="w-[40px]" />
-      <h1 className="text-lg font-bold text-shadow-neon">
-        Register your school
-      </h1>
+        <form className="w-full text-xs flex flex-col gap-3 font-semibold">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phoneNumber">School Code</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                name="schoolId"
+                id="schoolId"
+                className="bg-custom-black border border-zinc-800 rounded-md w-full h-[26px] px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
+              />
+              <em className="text-zinc-400">
+                For e.g: 'APUM1996' stands for AcadPulse University - Manila
+                (1996)
+              </em>
+            </div>
+          </div>
 
-      <form className="w-full text-xs flex flex-col gap-3 font-semibold">
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phoneNumber">School Code</label>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phoneNumber">Name</label>
             <input
               type="text"
-              name="schoolId"
-              id="schoolId"
-              className="bg-custom-black border border-zinc-800 rounded-md w-full h-[26px] px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
-              />
-            <em className="text-zinc-400">
-              For e.g: 'APUM1996' stands for AcadPulse University - Manila
-              (1996)
-            </em>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phoneNumber">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
-          />
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phoneNumber">Address</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
+              name="name"
+              id="name"
+              className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
             />
-        </div>
+          </div>
 
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phoneNumber">Email address</label>
-          <input
-            type="email"
-            name="name"
-            id="name"
-            className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
-          />
-        </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phoneNumber">Address</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
+            />
+          </div>
 
-        <input type="file" className="bg-pinkish" />
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phoneNumber">Email address</label>
+            <input
+              type="email"
+              name="name"
+              id="name"
+              className="bg-custom-black border border-zinc-800 rounded-md w-full px-2 py-1 outline-none focus:border-pinkish transition-colors duration-150 ease-in-out"
+            />
+          </div>
 
-        <button className="w-full bg-pinkish rounded-md py-2 hover:bg-red-400 transition-colors duration-150 ease-in-out font-bold mt-2 flex items-center justify-center gap-1">
-          Continue <ArrowRight className="w-[13px] h-[13px]" />
-        </button>
-      </form>
-            </div>
+          <input type="file" className="bg-pinkish" />
+
+          <button className="w-full bg-pinkish rounded-md py-2 hover:bg-red-400 transition-colors duration-150 ease-in-out font-bold mt-2 flex items-center justify-center gap-1">
+            Continue <ArrowRight className="w-[13px] h-[13px]" />
+          </button>
+        </form>
+      </div>
     </>
   );
 }
