@@ -26,7 +26,7 @@ export default function SignInPage() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8080/api/v1/login',
+        'https://acadpulse-backend.onrender.com/api/v1/login',
         formData,
         { withCredentials: true }
       );
@@ -79,7 +79,10 @@ export default function SignInPage() {
                 <label htmlFor="password" className="font-semibold">
                   Password
                 </label>
-                <a href="#" className="text-pinkish font-semibold">
+                <a
+                  href="http://localhost:8080/api/v1/refresh"
+                  className="text-pinkish font-semibold"
+                >
                   Forgot Password?
                 </a>
               </div>
