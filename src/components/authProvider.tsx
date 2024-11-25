@@ -23,7 +23,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/v1/app/protected-page',
+        'https://acadpulse-backend.onrender.com/api/v1/app/protected-page',
         {
           withCredentials: true,
         }
