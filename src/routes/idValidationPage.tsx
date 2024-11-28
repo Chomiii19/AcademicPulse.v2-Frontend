@@ -11,6 +11,7 @@ export default function IDValidaionPage() {
         <QrCodeScanner
           title="ID Validation"
           desc="Validate a student by scanning the QR Code."
+          link="https://acadpulse-backend.onrender.com/api/v1/app/id-validation/submit"
         />
       </main>
     </>

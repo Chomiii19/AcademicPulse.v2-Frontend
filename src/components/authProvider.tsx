@@ -9,12 +9,18 @@ import axios from 'axios';
 import LoadingPage from '../routes/loadingPage';
 
 type User = {
-  id: string;
-  role: string;
-  isSignedIn: boolean;
+  role: number;
+  isVerified: boolean;
+  schoolName: string;
+  firstname: string;
 };
 
-const AuthContext = createContext<User | null>(null);
+type AuthContextType = {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+};
+
+const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -28,9 +34,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           withCredentials: true,
         }
       );
-      console.log(response.data); // Debugging the response
       if (response.data.status === 'Success') {
-        setUser(response.data.user);
+        setUser(response.data.data.user);
       } else {
         setUser(null);
       }
@@ -48,12 +53,18 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   if (loading) return <LoadingPage />;
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuth = () => {
   const context = useContext(AuthContext);
-  console.log(context);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
   return context;
 };
 

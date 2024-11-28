@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   House,
   IdCard,
@@ -9,9 +10,40 @@ import {
   Handshake,
   Settings,
   MessageSquareWarning,
+  LogOut,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './authProvider';
 
 export default function SidebarSection({ active }: { active: number }) {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
+
+  async function signOut() {
+    try {
+      await axios.get('https://acadpulse-backend.onrender.com/api/v1/signout', {
+        withCredentials: true,
+      });
+      setUser(null);
+      navigate('/', { replace: true });
+    } catch (err) {
+      console.error('ERROR: ', err);
+    }
+  }
+
+  async function handleSponsor() {
+    try {
+      const response = await axios.get(
+        'https://acadpulse-backend.onrender.com/api/v1/app/sponsor',
+        { withCredentials: true }
+      );
+
+      window.location.href = response.data.session.url;
+    } catch (error) {
+      console.log('ERROR: ', error);
+    }
+  }
+
   return (
     <nav className=" bg-bg-color fixed z-50 h-screen w-60 p-2 pt-20 text-zinc-400 font-manrope lg:hover:overflow-x-auto transition-all duration-300 -translate-x-64 lg:translate-x-0">
       <section className="flex flex-col w-full gap-1 border-b pb-4 border-b-zinc-800">
@@ -71,13 +103,14 @@ export default function SidebarSection({ active }: { active: number }) {
         >
           <MessageSquare /> <p>Community</p>
         </div>
-        <div
+        <button
+          onClick={handleSponsor}
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
             active === 8 ? 'text-pinkish bg-zinc-900' : ''
           }`}
         >
           <Handshake /> <p>Become a Sponsor</p>
-        </div>
+        </button>
         <div
           className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
             active === 9 ? 'text-pinkish bg-zinc-900' : ''
@@ -92,9 +125,16 @@ export default function SidebarSection({ active }: { active: number }) {
         >
           <MessageSquareWarning /> <p>Send Feedback</p>
         </div>
+        <button
+          onClick={signOut}
+          className={`flex gap-5 items-center hover:text-pinkish hover:bg-zinc-900 transition-all ease-in-out duration-300 cursor-pointer w-full px-3 py-2 rounded-lg ${
+            active === 11 ? 'text-pinkish bg-zinc-900' : ''
+          }`}
+        >
+          <LogOut /> <p>Sign Out</p>
+        </button>
       </section>
       <footer className="flex flex-col gap-2 center w-full text-xs text-zinc-500 font-semibold text-center pt-4">
-        <p>This website is only an academic project</p>
         <p>Copyright © 2024 AcadPulse Inc.</p>
       </footer>
     </nav>

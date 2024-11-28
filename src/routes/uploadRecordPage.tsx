@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/header';
 import SidebarSection from '../components/sidebar';
+import { useNavigate } from 'react-router-dom';
 
 export default function UploadRecordPage() {
   return (
@@ -18,6 +19,7 @@ export default function UploadRecordPage() {
 
 function UploadDataForm() {
   const [isDragging, setIsDragging] = useState(false);
+  const navigate = useNavigate();
 
   const handleDragEnter = (e: React.DragEvent) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ function UploadDataForm() {
     const files = e.dataTransfer.files;
     if (files.length) {
       console.log('Files dropped:', files);
-      // Handle file processing here
+      handleSubmit();
     }
   };
 
@@ -52,8 +54,13 @@ function UploadDataForm() {
     const files = e.target.files;
     if (files && files.length) {
       console.log('Files uploaded:', files);
-      // Handle file processing here
+      handleSubmit();
     }
+  };
+
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+    setTimeout(() => navigate('/app/students-record', { replace: true }), 1500);
   };
 
   return (
@@ -62,13 +69,14 @@ function UploadDataForm() {
         Upload your Student Record
       </h1>
       <form
-        className={`w-[400px] h-[350px] border-[4px] rounded-2xl border-dashed flex flex-col gap-2 items-center justify-center cursor-pointer transition-all duration-150 ease-in ${
+        className={`w-[400px] h-[350px] border-[4px] rounded-2xl border-dashed flex flex-col gap-2 items-center justify-center cursor-pointer transition-all duration-150 ease-in relative ${
           isDragging ? 'bg-zinc-800 border-pinkish' : 'border-zinc-300'
         }`}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        onSubmit={handleSubmit}
       >
         <FontAwesomeIcon
           icon={faCloudArrowUp}

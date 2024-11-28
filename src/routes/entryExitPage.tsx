@@ -18,6 +18,7 @@ function EntryPage() {
         <QrCodeScanner
           title="Entrance Scanner"
           desc="Validate if a student is enrolled in your campus."
+          link="https://acadpulse-backend.onrender.com/api/v1/app/student-log/entrance/submit"
         />
       </main>
     </>
@@ -39,6 +40,7 @@ function ExitPage() {
         <QrCodeScanner
           title="Exit Scanner"
           desc="Check if a student was validated in their entry."
+          link="https://acadpulse-backend.onrender.com/api/v1/app/student-log/exit/submit"
         />
       </main>
     </>

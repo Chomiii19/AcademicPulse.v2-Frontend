@@ -80,7 +80,10 @@ function SignUpForm({
   ): Promise<void> => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:8080/api/v1/signup', formData);
+      await axios.post(
+        'https://acadpulse-backend.onrender.com/api/v1/signup',
+        formData
+      );
       setResponseMessage('Signup successful!');
 
       setTimeout(() => setActivePage(activePage + 1), 2000);

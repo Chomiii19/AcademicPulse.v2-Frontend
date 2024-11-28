@@ -4,6 +4,7 @@ import { IdCard, ScanQrCode, FileUp } from 'lucide-react';
 import Header from '../components/header';
 import SidebarSection from '../components/sidebar';
 import LineChart from '../services/logLineGraph';
+import { useAuth } from '../components/authProvider';
 
 function AppPage() {
   return (
@@ -33,19 +34,24 @@ function AppBody() {
 }
 
 function UserGreetings() {
+  const { user } = useAuth();
   return (
     <div className="col-span-2 bg-gradient-to-br from-red-500 via-pinkish to-red-400 rounded-lg p-3 text-zinc-200">
       <div className="flex h-full w-full justify-between gap-2">
         <div className="flex flex-col h-full justify-between pb-3">
           <div className="flex items-center gap-2">
-            <h1 className="font-bold text-2xl">Welcome back, Chomi!</h1>
+            <h1 className="font-bold text-xl">{`Welcome back, ${user?.firstname}!`}</h1>
             <p className="border border-zinc-200 rounded-full px-2 text-xs">
-              admin
+              {user?.role === 3
+                ? 'Staff'
+                : user?.role === 2
+                ? 'Admin'
+                : user?.role === 1
+                ? 'Owner'
+                : 'Unknown Role'}
             </p>
           </div>
-          <p className="text-sm">
-            Technological University of the Philippines - Manila
-          </p>
+          <p className="text-sm">{user?.schoolName}</p>
         </div>
         <img
           src="/assets/communityUsers/user-2.jpeg"

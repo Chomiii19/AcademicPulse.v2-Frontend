@@ -33,12 +33,11 @@ export default function SignInPage() {
       setResponseMessage('Signin successful!');
 
       if (response.data.status === 'Success') console.log(response.data);
-      navigate('/app/dashboard', { replace: true });
+      navigate('/app', { replace: true });
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         setResponseMessage(
-          error.response?.data?.message ||
-            'An error occurred. Please try again.'
+          error.response?.data?.status || 'An error occurred. Please try again.'
         );
       } else if (error instanceof Error) {
         setResponseMessage('An error occurred. Please try again.');
