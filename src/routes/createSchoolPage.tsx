@@ -163,12 +163,9 @@ function SchoolForm({
             />
           </div>
 
-          {/* <div className="cursor-pointer">
-            <input
-              type="file"
-              className="bg-pinkish w-10 cursor-pointer opacity-0"
-            />
-          </div> */}
+          <div className="cursor-pointer">
+            <input type="file" className=" cursor-pointer" />
+          </div>
 
           <button className="w-full bg-pinkish rounded-md py-2 hover:bg-red-400 transition-colors duration-150 ease-in-out font-bold flex items-center justify-center gap-1">
             Continue <ArrowRight className="w-[13px] h-[13px]" />

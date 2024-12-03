@@ -4,6 +4,7 @@ import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/header';
 import SidebarSection from '../components/sidebar';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function UploadRecordPage() {
   return (
@@ -23,44 +24,60 @@ function UploadDataForm() {
 
   const handleDragEnter = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
     setIsDragging(true);
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
     setIsDragging(false);
   };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
     setIsDragging(false);
 
     const files = e.dataTransfer.files;
     if (files.length) {
       console.log('Files dropped:', files);
-      handleSubmit();
+      handleSubmit(files[0]);
     }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
     const files = e.target.files;
     if (files && files.length) {
       console.log('Files uploaded:', files);
-      handleSubmit();
+      handleSubmit(files[0]);
     }
   };
 
-  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    e?.preventDefault();
-    setTimeout(() => navigate('/app/students-record', { replace: true }), 1500);
+  const handleSubmit = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await axios.post(
+        'https://acadpulse-backend.onrender.com/api/v1/app/upload-record/submit',
+        formData,
+        {
+          headers: { 'Content-type': 'multipart/form-data' },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      setTimeout(
+        () => navigate('/app/students-record', { replace: true }),
+        1500
+      );
+    } catch (err) {
+      console.error('Error:', err);
+    }
   };
 
   return (
@@ -76,7 +93,6 @@ function UploadDataForm() {
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        onSubmit={handleSubmit}
       >
         <FontAwesomeIcon
           icon={faCloudArrowUp}
